@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-third"></div>
+    <div class="column">
+        <h1 class="title">log in to your tweety account</h1>
+        <h2 class="subtitle">enter your username and password below</h2>
+        </br>
+
+        <form method="POST" action="/login_view/">
+            {% csrf_token %}
+            <div class="box">
+                <div class="field">
+                    <label class="label">username</label>
+                    <div class="control">
+                      <input name="username" class="input" type="text" placeholder="e.g. saltyfugu">
+                    </div>
+                </div>
+                  
+                <div class="field">
+                    <label class="label">password</label>
+                    <div class="control">
+                    <input name="password" class="input" type="password">
+                    </div>
+                </div>  
+                <div class="buttons has-addons is-centered">
+                    <input type="submit" value="login" class="button is-primary"></input>
+                </div>
+            </div>
+        </form>
+        
+
+    </div>
+    <div class="column is-one-third"></div>
+</div>
+
+{% endblock %}
