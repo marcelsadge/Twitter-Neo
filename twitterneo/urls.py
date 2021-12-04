@@ -16,12 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from tweets.views import splash, login, register, homepage
+from tweets.views import create_tweet, delete_tweet, splash, login, request_login, request_logout, register, homepage, account
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', splash, name = 'splash'),
     path('home/', homepage, name = 'home'), 
     path('login/', login, name='login'),
+    path('request_login/', request_login, name='request_login'),
+    path('logout/', request_logout, name='logout_view'),
     path('register/', register, name='register'),
+    path('profile/<slug:username', account, name='account'),
+    path('create_tweet', create_tweet, name='create_tweet'),
+    path('delete_tweet/', delete_tweet, name='delete_tweet')
 ]
