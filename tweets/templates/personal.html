@@ -25,7 +25,7 @@
             <section class="tab-content">
               </br>
               {% for tweet in tweets %}
-              {% if twitter_user.get_tweets == 0 %}
+              {% if twitter_user.get_tweets > 0 %}
               <div class="box">
                 <h2 class="subtitle">
                   No available tweets.
