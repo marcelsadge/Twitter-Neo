@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for account in account %}
+
+<div class="columns">
+    <div class="column is-one-quarter"></div>
+    <div class="column">
+        <section class="hero is-light">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                {{ account.twitter_name }}!
+              </h1>
+              <h2 class="subtitle">
+                Your Profile
+              </h2>
+            </div>
+          </div>
+        </section>
+        </br>
+        <div id="tabs-with-content">
+          <div>
+            <section class="tab-content">
+              </br>
+              {% for tweet in tweets %}
+              {% if twitter_user.get_tweets == 0 %}
+              <div class="box">
+                <h2 class="subtitle">
+                  No available tweets.
+                </h2>
+              </div>
+              {% else %}
+              <a class="navbar-item" a href="{% url 'confirm_delete' tweet.code %}"> 
+                Delete Post
+              </a>
+              <div class="box">
+                <article class="media">
+                    <figure class="media-left">
+                    </figure>
+                    <div class="media-content">
+                      <div class="content">
+                        <p>
+                          <strong>{{ account.twitter_name }}</strong> <small>@{{ user.username }}</small> <small>{{ tweet.timestamp }}</small>
+                          <br>
+                          {{ tweet.tweet|safe }}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="media-right">
+                      <button class="delete" id="delete_button"></button>
+                    </div>
+                </article>
+              </div> 
+              {% endif %}
+            {% endfor %}
+            </section>
+            <section class="tab-content">
+              </br>
+              <h1 class="title">Account Details</h1>
+              <table class="table is-fullwidth is-hoverable">
+                <tbody>
+                  <tr>
+                    <th>Username</th>
+                    <td>@{{ user.username }}</td>
+                  </tr>
+                  <tr>
+                    <th>Name</th>
+                    <td>{{ account.twitter_name }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </div>
+      </div>
+    <div class="column is-one-quarter"></div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

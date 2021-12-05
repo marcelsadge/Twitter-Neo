@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-third"></div>
+    <div class="column">
+        <section class="hero is-light">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Twitter Neo Tweet
+              </h1>
+              <h2 class="subtitle">
+                Enter your tweet
+              </h2>
+            </div>
+          </div>
+        </section>
+        </br>
+        <form method="POST" action="/create_tweet/">
+            {% csrf_token %}
+            <div class="box">
+                <div class="field">
+                    <label class="label">Neo Tweet</label>
+                    <div class="control">
+                      <input name="tweet" class="input" type="text" placeholder="print('Hello World!')">
+                    </div>
+                </div>
+                <div class="buttons has-addons is-centered">
+                    <input type="submit" value="Tweet" class="button is-primary"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column is-one-third"></div>
+</div>
+
+{% endblock %}

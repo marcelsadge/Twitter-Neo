@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-quarter"></div>
+    <div class="column">
+        <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                  Greetings!
+                </h1>
+                <h2 class="subtitle">
+                  Tweets
+                </h2>
+              </div>
+            </div>
+        </section>
+        </br>
+        {% for tweet in tweets %}
+        <div class="box">
+            <article class="media">
+                <figure class="media-left">
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <div class="entry">
+                      <p>
+                        <strong>{{ tweet.get_twitter_name }}</strong> 
+                        <a href="{% url 'profile' tweet.get_author %}">@{{ tweet.get_author }}
+                        </a> 
+                        <small>{{ tweet.timestamp }}</small>
+                        <br>
+                        {{ tweet.tweet|safe}}
+                      </p>
+                    </div>
+                  </div>
+                  <nav class="level is-mobile">
+                    <div class="level-left">
+                      {% if tweet.is_liked %}
+                        <a style="color: rgb(2, 3, 83)" class="level-item">
+                          <span class="icon is-small"><i class="fas fa-thumbs-up"></i></span>
+                        </a>
+                        <form method="POST" action="/like_tweet/">
+                          {% csrf_token %}
+                            <div class="buttons">
+                              <button type="submit" name='dislike' value='{{ tweet.code }}' class="button is-small is-primary">Dislike</button>
+                            </div>
+                        </form>
+                      {% elif not tweet.is_liked %}
+                      <form method="POST" action="/like_tweet/">
+                        {% csrf_token %}
+                          <div class="buttons">
+                            <button type="submit" name='like' value='{{ tweet.code }}' class="button is-small is-primary">Like</button>
+                          </div>
+                      </form>
+                      {% endif %}
+                    </div>
+                  </nav>
+                </div>
+            </article>
+        </div> 
+        {% endfor %}
+
+    </div>
+    <div class="column is-one-quarter"></div>
+</div>
+
+{% endblock %}

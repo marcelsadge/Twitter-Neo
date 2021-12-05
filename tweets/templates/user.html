@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-quarter"></div>
+    <div class="column">
+        </br>
+        {% for tweet in tweets %}
+        <div class="box">
+            <article class="media">
+                <figure class="media-left">
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>{{ tweet.get_twitter_name }}</strong> @{{ tweet.get_author }} <small>{{ tweet.timestamp }}</small>
+                      <br>
+                      {{ tweet.tweet|safe }}
+                    </p>
+                  </div>
+                </div>
+            </article>
+        </div> 
+        {% endfor %}
+
+    </div>
+    <div class="column is-one-quarter"></div>
+</div>
+
+{% endblock %}

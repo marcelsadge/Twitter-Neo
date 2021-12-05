@@ -5,13 +5,12 @@ from django.contrib.auth.models import User
 domain = template.Library()
 
 class Hashtags(models.Model):
-    word = models.CharField(max_length=100, null=True)
     code = models.AutoField(primary_key=True)
+    word = models.CharField(max_length=100, null=True)
 
 class Account(models.Model):
     twitter_name = models.CharField(max_length=50)
     twitter_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    last_login = models.DateTimeField(auto_now=True, null=True)
     
     def contains_likes(self):
         if self.get_likes == 0:
@@ -47,9 +46,9 @@ class Tweets(models.Model):
         return self.twitter_user.username
 
     def get_twitter_name(self):
-        if self.account is None:
+        if self.twitter_account is None:
             return "Twitter User"
-        return self.twitter_account.name
+        return self.twitter_account.twitter_name
 
     def is_liked(self):
         if self.get_likes == 0:
@@ -62,11 +61,11 @@ class Tweets(models.Model):
 
     @property
     def query_user_likes(self, user):
-        return Likes.objects.filter(main_tweet=self, twitter_user=user).count()
+        return Likes.objects.filter(main_tweet=self, user=user).count()
 
 class Likes(models.Model):
-    twitter_account = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
-    twitter_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     main_tweet = models.ForeignKey(Tweets, on_delete=models.CASCADE, null=True)
     timestamp = models.DateTimeField(auto_now=True, null=True)
 

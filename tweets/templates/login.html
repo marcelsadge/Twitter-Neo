@@ -5,24 +5,32 @@
 <div class="columns">
     <div class="column is-one-third"></div>
     <div class="column">
-        <h1 class="title">log in to your Twitter Neo account</h1>
-        <h2 class="subtitle">enter your username and password below</h2>
+        <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                    Twitter Neo Login
+                </h1>
+                <h2 class="subtitle">
+                    Enter your credentials
+                </h2>
+              </div>
+            </div>
+        </section>
         </br>
-
-        <form method="POST" action="/login_view/">
+        <form method="POST" action="/request_login/">
             {% csrf_token %}
             <div class="box">
                 <div class="field">
-                    <label class="label">username</label>
+                    <label class="label">Username</label>
                     <div class="control">
-                      <input name="username" class="input" type="text" placeholder="e.g. saltyfugu">
+                      <input name="username" class="input" type="text" placeholder="Username">
                     </div>
                 </div>
-                  
                 <div class="field">
-                    <label class="label">password</label>
+                    <label class="label">Password</label>
                     <div class="control">
-                    <input name="password" class="input" type="password">
+                    <input name="password" class="input" type="Password" placeholder="Password">
                     </div>
                 </div>  
                 <div class="buttons has-addons is-centered">
@@ -30,8 +38,6 @@
                 </div>
             </div>
         </form>
-        
-
     </div>
     <div class="column is-one-third"></div>
 </div>

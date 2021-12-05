@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-third"></div>
+    <div class="column">
+        <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                    Twitter Neo Logout
+                </h1>
+                <h2 class="subtitle">
+                    Are you sure you want to log out?
+                </h2>
+              </div>
+            </div>
+        </section>
+        </br>
+        <form method="POST" action="/logout/">
+            {% csrf_token %}
+            <div class="box">
+                <div class="buttons has-addons is-centered">
+                    <input type="submit" value="Logout" class="button is-primary"></input>
+                    <a href="/home"class="button">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column is-one-third"></div>
+</div>
+
+{% endblock %}

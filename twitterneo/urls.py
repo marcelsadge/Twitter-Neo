@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from tweets.views import create_tweet, delete_tweet, splash, login, request_login, request_logout, register, homepage, account
+from tweets.views import confirm_delete, confirm_logout, create_tweet, like_tweet, get_user, render_hashtags, splash, login, request_login, request_logout, register, request_register, homepage, profile_account, tweet_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,9 +24,15 @@ urlpatterns = [
     path('home/', homepage, name = 'home'), 
     path('login/', login, name='login'),
     path('request_login/', request_login, name='request_login'),
+    path('confirm_logout/', confirm_logout, name='confirm_logout'),
     path('logout/', request_logout, name='logout_view'),
     path('register/', register, name='register'),
-    path('profile/<slug:username', account, name='account'),
-    path('create_tweet', create_tweet, name='create_tweet'),
-    path('delete_tweet/', delete_tweet, name='delete_tweet')
+    path('request_register/', request_register, name='request_register'),
+    path('profile/<slug:username>', profile_account, name='profile'),
+    path('hashtag/<slug:hashtag>', render_hashtags, name='render_hashtag'),
+    path('tweets/', get_user, name='tweets'),
+    path('tweet_view/', tweet_view, name='tweet_view'),
+    path('create_tweet/', create_tweet, name='create_tweet'),
+    path('confirm_delete/<slug:code>', confirm_delete, name='confirm_delete'),
+    path('like_tweet/', like_tweet, name = 'like_tweet')
 ]

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-third"></div>
+    <div class="column">
+        <section class="hero is-light">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                    Register Twitter Neo Account
+                </h1>
+                <h2 class="subtitle">
+                    Enter your credentials
+                </h2>
+              </div>
+            </div>
+        </section>
+        </br>
+        <div class="box">
+            <form method="POST" action="/request_register/">
+                {% csrf_token %}
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                      <input name="name" class="input" placeholder="John Smith">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control has-icons-left has-icons-right">
+                      <input name="username" class="input" placeholder="Username">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                      </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                      <input name="password" class="input" type="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="buttons has-addons is-centered">
+                    <input type="submit" value="Register" class="button is-primary" a href= "/"></input>
+                    <a href="/"class="button">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="column is-one-third"></div>
+</div>
+
+{% endblock %}
