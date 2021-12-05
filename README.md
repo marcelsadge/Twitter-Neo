@@ -2,11 +2,11 @@
 
 Twitter clone built using Django. The only routes needed are below.
 
-'''
+```
 pip install -r requirements.txt
 cd twitterneo
 python manage.py runserver
-'''
+```
 
 ## Design
 
