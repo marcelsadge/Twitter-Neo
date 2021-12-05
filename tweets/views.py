@@ -5,8 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from tweets.models import Account, Tweets, Likes, Hashtags
 
-# Create your views here.
-
 def splash(request):
     if request.user.is_authenticated:
         return redirect("/home")
@@ -133,12 +131,19 @@ def like_tweet(request):
         Likes.objects.filter(user=request.user, main_tweet=tweet).delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def hashtag_page(request):
+    hashtags = Hashtags.objects.all()
+    return render(request, "hashtagdirectory.html", 
+    {
+        "hashtags": hashtags
+    })
+
 def render_hashtags(request, hashtag = None):
-    hg = Hashtags.objects.get(word=hashtag)
-    tweets = Tweets.objects.filter(code=hg.code)
+    hashtag = Hashtags.objects.get(word=hashtag)
+    tweets = Tweets.objects.filter(hashtag__code=hashtag.code)
     return render(request, "hashtag.html",
     {
-        "hashtag": hg,
+        "hashtag": hashtag,
         "tweets": tweets
     })
 

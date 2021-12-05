@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="columns">
+    <div class="column is-one-quarter"></div>
+    <div class="column">
+        </br>
+        {% for ht in hashtags %}
+        <div class="box">
+            <article class="media">
+                <figure class="media-left">
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>#{{ ht.word }}
+                      </strong>
+                      <a href="/hashtag/{{ht.word}}"> Query {{ht.word}}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+            </article>
+        </div> 
+        {% endfor %}
+
+    </div>
+    <div class="column is-one-quarter"></div>
+</div>
+
+{% endblock %}
